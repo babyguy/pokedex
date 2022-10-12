@@ -12,12 +12,14 @@ async function buscarPokemon(pokemon){
   }else if(respuesta.status === 200){
     // si se encuentrea se trae la informacion y se muestra al usuario
   const datos = await respuesta.json();
+  console.log(datos)
   container.innerHTML=`
     <div class="pokemon">
+    <H4 class="nombre-pokemon">${datos.forms[0].name.toUpperCase()}</H4>
         <div>
             <img class="img-pokemon" src="${datos.sprites.front_default}" height="300px">
         </div>
-        <div>
+        <div >
             <p><span class="stat" id="stat0">${datos.stats[0].stat.name} : ${datos.stats[0].base_stat}</span></p>
             <p><span class="stat" id="stat1">${datos.stats[1].stat.name} : ${datos.stats[1].base_stat}</span></p>
             <p><span class="stat" id="stat2">${datos.stats[2].stat.name} : ${datos.stats[2].base_stat}</span></p>
