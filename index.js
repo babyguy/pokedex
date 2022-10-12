@@ -8,7 +8,7 @@ async function buscarPokemon(pokemon){
   const respuesta = await fetch(url_pokeAPi+pokemon);
   if(respuesta.status === 404){
     // si no se encuentra de le inorma al usuario
-    container.innerHTML=`<H2 class="stat">El pokemon  ${pokemon} no se encontro en la base de datos </H2>`
+    container.innerHTML=`<H2 class="stat">El pokemon  ${pokemon.toUpperCase()} no se encontro en la base de datos </H2>`
   }else if(respuesta.status === 200){
     // si se encuentrea se trae la informacion y se muestra al usuario
   const datos = await respuesta.json();
