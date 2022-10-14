@@ -14,7 +14,7 @@ async function buscarPokemon(pokemon){
   const datos = await respuesta.json();
   console.log(datos)
   container.innerHTML=`
-    <div class="pokemon">
+    <div class="pokemon-info">
     <H4 class="nombre-pokemon">${datos.forms[0].name.toUpperCase()}</H4>
         <div>
             <img class="img-pokemon" src="${datos.sprites.front_default}" height="300px">
@@ -32,15 +32,29 @@ async function buscarPokemon(pokemon){
   }
 }
 
-document.getElementById('buscar').addEventListener('click',()=>{
+// enviar con el enter
+document.getElementById('pokemon').addEventListener('keypress', function(event) {
+        if (event.code === 'Enter')
+        {
+          event.preventDefault();
+        // se trae la informacion del formulario
+         const pokemonInt  = document.getElementById('pokemon').value.toLowerCase()
+        // se ejecuta la funcion buscarPokemon
+         buscarPokemon(pokemonInt);
+        }
+    });
 
+// buscar con botton
+document.getElementById('buscar').addEventListener('click',()=>{
     // se trae la informacion del formulario
-    const pokemonInt  = document.getElementById('pokemon').value
+    const pokemonInt  = document.getElementById('pokemon').value.toLowerCase()
     // se ejecuta la funcion buscarPokemon
     buscarPokemon(pokemonInt);
 })
 
 // limpiar el formulario
 document.getElementById('borrar').addEventListener('click',()=>{
-    document.getElementById('pokemon').value = ''
+    document.getElementById('pokemon').value = '';
+    container.innerHTML = ` `
 })
+
